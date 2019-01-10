@@ -6,7 +6,7 @@
 #    By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 0017/12/28 15:26:42 by uaud         #+#   ##    ##    #+#        #
-#    Updated: 2019/01/10 14:27:55 by eruaud      ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/10 15:24:01 by eruaud      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -58,7 +58,7 @@ check : cclean
 	./$(CHECK_NAME)
 
 cclean:
-	@/bin/rm $(OBJ_CHECK) $(CHECK_NAME)
+	@/bin/rm -f $(OBJ_CHECK) $(CHECK_NAME)
 
 clean:
 	@/bin/rm -f $(OBJ)

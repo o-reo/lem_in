@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/12 12:59:38 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 15:10:13 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 15:52:11 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,6 +54,7 @@ void	free_rooms(t_room **rooms)
 	{
 		tmp = (*rooms)->next;
 		free((*rooms)->name);
+		free((*rooms)->linked);
 		free(*rooms);
 		*rooms = tmp;
 	}
@@ -104,6 +105,7 @@ t_room	**append_to_array(t_room **array, t_room *new_item)
 	}
 	new_array[i] = is_dup ? NULL : new_item;
 	new_array[i + 1] = NULL;
+	free(array);
 	return (new_array);
 }
 

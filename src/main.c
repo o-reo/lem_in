@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/11 17:54:52 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 14:47:58 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 15:40:23 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,6 +77,9 @@ int		parse_link(t_room **rooms, char *line)
 		return (IS_ENDED);
 	}
 	create_link(rooms, cols);
+	while (c)
+		ft_strdel(cols + --c);
+	ft_memdel((void**)&cols);
 	return (IS_LINK);
 }
 

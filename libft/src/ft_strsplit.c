@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/23 09:43:57 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/12 18:57:29 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 15:19:36 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ static int	count_words(char const *s, char c)
 	{
 		if (s[i] == c)
 		{
-			while (s[i] == c)
+			while (s[i] && s[i] == c)
 				i++;
 			nb++;
 		}
