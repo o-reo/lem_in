@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/12 12:59:38 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 14:46:49 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 15:10:13 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,12 +71,16 @@ void	create_link(t_room **rooms, char **to_link)
 	link1 = search_room(rooms, to_link[0]);
 	link2 = search_room(rooms, to_link[1]);
 	// DEBUG
-	link1->linked = append_to_array(link1->linked, link2);
-	link2->linked = append_to_array(link2->linked, link1);
+	if (link1 && link2)
+	{
+		link1->linked = append_to_array(link1->linked, link2);
+		link2->linked = append_to_array(link2->linked, link1);
+	}
 }
 
 /*
 ** Reallocate linked array
+** Does not append if the item is already present
 ** Will need to free all the memory!
 */
 
@@ -85,17 +89,20 @@ t_room	**append_to_array(t_room **array, t_room *new_item)
 	int		n;
 	t_room	**new_array;
 	int		i;
+	int		is_dup;
 
 	n = ft_roomlen(array);
 	if (!(new_array = ft_memalloc(sizeof(t_room*) * (n + 2))))
 		return (NULL);
 	i = 0;
+	is_dup = 0;
 	while (array && array[i])
 	{
 		new_array[i] = array[i];
+		is_dup = array[i] == new_item ? 1 : 0;
 		i++;
 	}
-	new_array[i] = new_item;
+	new_array[i] = is_dup ? NULL : new_item;
 	new_array[i + 1] = NULL;
 	return (new_array);
 }
