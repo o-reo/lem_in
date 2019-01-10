@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/02 15:25:57 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/12 16:53:21 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 16:57:53 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,6 +56,8 @@ int				ft_readline(int const fd, char **line)
 			return (ft_current_line(line, &str, 1));
 	}
 	if (ft_strlen(str) > 0)
+	{
 		return (ft_current_line(line, &str, 0));
+	}
 	return (0);
 }
