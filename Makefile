@@ -6,7 +6,7 @@
 #    By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 0017/12/28 15:26:42 by uaud         #+#   ##    ##    #+#        #
-#    Updated: 2018/12/12 17:09:22 by eruaud      ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/13 18:18:00 by eruaud      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,7 +14,7 @@
 NAME = lem_in
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-FUNC = main parsing_tools debug
+FUNC = main parsing_tools debug utils
 SRC = $(addprefix src/, $(addsuffix .c, $(FUNC)))
 OBJ = $(addprefix build/, $(addsuffix .o, $(FUNC)))
 RED = \033[1;31m
