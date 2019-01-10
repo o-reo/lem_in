@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/11 17:54:52 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 11:30:05 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 14:47:58 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,7 +74,7 @@ int		parse_link(t_room **rooms, char *line)
 		while (c)
 			ft_strdel(cols + --c);
 		ft_memdel((void**)&cols);
-		return (-1);
+		return (IS_ENDED);
 	}
 	create_link(rooms, cols);
 	return (IS_LINK);
@@ -99,9 +99,8 @@ int		parser(t_room **rooms, char *line, int *section)
 	{
 		*section = parse_room(rooms, line, *section);
 	}
-	/* if (*section == IS_LINK)
+	if (line[0] != '#' && *section == IS_LINK)
 		 *section = parse_link(rooms, line);
-	*/
 	return (*section != IS_ENDED);
 }
 

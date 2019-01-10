@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/12 17:04:25 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 11:29:25 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 14:42:22 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,12 +36,11 @@ void	ft_print_rooms(t_room **rooms)
 		else
 			ft_printf("\n");
 		link = room->linked;
-		/* while(*link)
+		while(*link)
 		{
 			ft_printf("%s-%s\n", room->name, (*link)->name);
 			link++;
 		}
-		*/
 		room = room->next;
 	}
 }

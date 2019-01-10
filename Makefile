@@ -6,7 +6,7 @@
 #    By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 0017/12/28 15:26:42 by uaud         #+#   ##    ##    #+#        #
-#    Updated: 2018/12/13 18:18:00 by eruaud      ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/10 14:27:55 by eruaud      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,8 +14,9 @@
 NAME = lem_in
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-FUNC = main parsing_tools debug utils
-SRC = $(addprefix src/, $(addsuffix .c, $(FUNC)))
+FUNC = parsing_tools debug utils
+OBJ_MAIN = build/main.o
+SRC = $(addprefix src/, $(addsuffix .c, $(FUNC) main)) includes/lem_in.h
 OBJ = $(addprefix build/, $(addsuffix .o, $(FUNC)))
 RED = \033[1;31m
 GREEN = \033[1;92m
@@ -25,11 +26,18 @@ HEADER = -I includes/ -I libft/includes/
 LDLIBS = -lft
 LDFLAGS = -L libft/
 
+# UNIT TEST - CHECK
+CHECK_NAME = check
+OBJ_CHECK = build/test.o
+CHECK_HEADER = -I ~/.brew/include/
+CHECK_LIBS = -L ~/.brew/lib/
+CHECK_FLAGS = -lcheck
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(POBJ) lib
+$(NAME): $(OBJ) $(OBJ_MAIN) lib
 	@echo "\033[1;31mCompiling project..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(HEADER) $(LDLIBS) $(LDFLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(OBJ_MAIN) $(HEADER) $(LDLIBS) $(LDFLAGS)
 	@echo "\033[1;92mSuccess !"
 
 ./build/%.o: ./src/%.c
@@ -41,7 +49,16 @@ lib :
 	@make -C libft
 
 norm :
-	@norminette $(SRC)
+	@norminette $(SRC) $()
+
+check : cclean
+	@$(CC) $(CFLAGS) -o build/test.o -c src/test.c $(HEADER) $(CHECK_HEADER)
+	@$(CC) -Wall -o $(CHECK_NAME) $(OBJ) $(OBJ_CHECK) $(HEADER) $(CHECK_HEADER) $(LDLIBS) $(LDFLAGS) $(CHECK_FLAGS) $(CHECK_LIBS)
+	@echo "$(YELLOW)"
+	./$(CHECK_NAME)
+
+cclean:
+	@/bin/rm $(OBJ_CHECK) $(CHECK_NAME)
 
 clean:
 	@/bin/rm -f $(OBJ)
