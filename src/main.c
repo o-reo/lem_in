@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/11 17:54:52 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 16:43:08 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 13:13:15 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,20 +98,20 @@ int		parser(t_room **rooms, char *line, int *section)
 		ants = ft_atoi(line);
 		*section = !ft_strisdigit(line) || ants == 0 ? IS_ENDED : ROOM_NODE;
 	}
-	else if (*section == ROOM_NODE || *section == ROOM_START || *section == ROOM_END)
+	else if (*section == ROOM_NODE || *section == ROOM_START
+	|| *section == ROOM_END)
 	{
 		*section = parse_room(rooms, line, *section);
 	}
 	if (line[0] != '#' && *section == IS_LINK)
-		 *section = parse_link(rooms, line);
+		*section = parse_link(rooms, line);
 	return (*section != IS_ENDED);
 }
 
 /*
-** Catch standard input and send it to parser
-** !I will launch resolution after parsing just before return!
-** There are still reachables on ft_readline because of the damn static
-** Added a -q option to not print the input
+** Catch standard input, send it to parser and launch resolution
+** There is a -q option to not print the input
+** We can add ft_print_rooms(&rooms) to check the parsing
 */
 
 int		main(int ac, char **av)
@@ -130,7 +130,6 @@ int		main(int ac, char **av)
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-	ft_print_rooms(&rooms);
 	free_rooms(&rooms);
 	return (0);
 }

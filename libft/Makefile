@@ -6,7 +6,7 @@
 #    By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 0017/11/07 17:44:25 by ruaud        #+#   ##    ##    #+#        #
-#    Updated: 2018/12/12 15:57:22 by eruaud      ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/11 13:11:01 by eruaud      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -28,7 +28,7 @@ PRINTF = ft_prf_atoi ft_prf_d ft_prf_launcher ft_prf_o ft_prf_pc ft_prf_s \
 		 ft_prf_strutils2 ft_prf_c ft_prf_d2 ft_prf_numutil ft_printf \
 		 ft_prf_p ft_prf_putwchar ft_prf_strutils ft_prf_utils ft_prf_x prf_tags
 OBJ = $(addprefix build/, $(addsuffix .o, $(NFUNC))) $(addprefix build/, $(addsuffix .o, $(PRINTF)))
-SRC = $(addprefix src/, $(addsuffix .c, $(NFUNC))) $(addprefix src, $(addsuffix .c, $(PRINTF)))
+SRC = $(addprefix src/, $(addsuffix .c, $(NFUNC))) $(addprefix src/, $(addsuffix .c, $(PRINTF)))
 
 all : $(NAME)
 

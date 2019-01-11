@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/12 12:59:38 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 15:52:11 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 13:09:19 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,7 +71,6 @@ void	create_link(t_room **rooms, char **to_link)
 
 	link1 = search_room(rooms, to_link[0]);
 	link2 = search_room(rooms, to_link[1]);
-	// DEBUG
 	if (link1 && link2)
 	{
 		link1->linked = append_to_array(link1->linked, link2);
