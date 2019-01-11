@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/13 18:17:18 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 15:12:35 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 13:56:13 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,4 +78,19 @@ t_room	*search_room(t_room **rooms, char *name)
 	while (current && strcmp(name, current->name) != 0)
 		current = current->next;
 	return (current);
+}
+
+/*
+** Returns error
+*/
+
+int		error(int is_error)
+{
+	if (is_error){
+		ft_printf("ERROR\n");
+		return (-1);
+	}
+	else
+		return (0);
+
 }

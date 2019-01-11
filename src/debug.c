@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/12 17:04:25 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 13:09:45 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 15:03:08 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,8 @@ void	ft_print_rooms(t_room **rooms)
 		room->name, room->x, room->y);
 		if (room->cmd != ROOM_NODE)
 			ft_print_cmd(room->cmd);
+		if (room->cost != INT_MAX)
+			ft_printf("cost: %i\n", room->cost);
 		else
 			ft_printf("\n");
 		link = room->linked;

@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/12 12:59:38 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 13:09:19 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 15:42:54 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,6 +31,7 @@ t_room	*create_room(t_room **rooms)
 	new_room->y = 0;
 	new_room->ant = 0;
 	new_room->cmd = ROOM_NODE;
+	new_room->cost = INT_MAX;
 	tmp = *rooms;
 	if (tmp)
 	{
@@ -71,7 +72,7 @@ void	create_link(t_room **rooms, char **to_link)
 
 	link1 = search_room(rooms, to_link[0]);
 	link2 = search_room(rooms, to_link[1]);
-	if (link1 && link2)
+	if (link1 && link2 && link1 != link2)
 	{
 		link1->linked = append_to_array(link1->linked, link2);
 		link2->linked = append_to_array(link2->linked, link1);

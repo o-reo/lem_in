@@ -6,15 +6,15 @@
 #    By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 0017/12/28 15:26:42 by uaud         #+#   ##    ##    #+#        #
-#    Updated: 2019/01/10 15:24:01 by eruaud      ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/11 16:01:43 by eruaud      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-FUNC = parsing_tools debug utils
+FUNC = parsing_tools debug utils heuristic moves
 OBJ_MAIN = build/main.o
 SRC = $(addprefix src/, $(addsuffix .c, $(FUNC) main)) includes/lem_in.h
 OBJ = $(addprefix build/, $(addsuffix .o, $(FUNC)))

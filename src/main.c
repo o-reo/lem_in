@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/11 17:54:52 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 13:13:15 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 16:03:26 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ void	parse_comment(char *line, int *section)
 ** There is an invalid read in strsplit
 */
 
-int		parse_room(t_room **rooms, char *line, int cmd)
+int		parse_room(t_room **rooms, char *line, int cmd, int ants)
 {
 	char	**cols;
 	t_room	*new_room;
@@ -52,6 +52,7 @@ int		parse_room(t_room **rooms, char *line, int cmd)
 	new_room->x = ft_atoi(cols[1]);
 	new_room->y = ft_atoi(cols[2]);
 	new_room->cmd = cmd;
+	new_room->ant = cmd == ROOM_START ? ants : 0;
 	while (c)
 		ft_strdel(cols + --c);
 	ft_memdel((void**)&cols);
@@ -89,8 +90,9 @@ int		parse_link(t_room **rooms, char *line)
 
 int		parser(t_room **rooms, char *line, int *section)
 {
-	int		ants;
+	int	ants;
 
+	ants = 0;
 	if (line[0] == '#')
 		parse_comment(line, section);
 	else if (*section == IS_ANT)
@@ -101,7 +103,7 @@ int		parser(t_room **rooms, char *line, int *section)
 	else if (*section == ROOM_NODE || *section == ROOM_START
 	|| *section == ROOM_END)
 	{
-		*section = parse_room(rooms, line, *section);
+		*section = parse_room(rooms, line, *section, ants);
 	}
 	if (line[0] != '#' && *section == IS_LINK)
 		*section = parse_link(rooms, line);
@@ -130,6 +132,11 @@ int		main(int ac, char **av)
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
+	calculate_cost(rooms);
+	if (rooms->cost == INT_MAX)
+		ft_printf("ERROR\n");
+	ft_print_rooms(&rooms);
+	move_ants(rooms);
 	free_rooms(&rooms);
 	return (0);
 }
