@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/11 17:54:52 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 16:03:26 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 15:09:35 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ int		parse_room(t_room **rooms, char *line, int cmd, int ants)
 	int		c;
 
 	cols = ft_strsplit(line, ' ');
-	if ((c = ft_arraylen(cols)) != 3)
+	if ((c = ft_arraylen((void**)cols)) != 3)
 	{
 		while (c)
 			ft_strdel(cols + --c);
@@ -70,7 +70,7 @@ int		parse_link(t_room **rooms, char *line)
 	int		c;
 
 	cols = ft_strsplit(line, '-');
-	if ((c = ft_arraylen(cols)) != 2)
+	if ((c = ft_arraylen((void**)cols)) != 2)
 	{
 		while (c)
 			ft_strdel(cols + --c);
@@ -88,22 +88,19 @@ int		parse_link(t_room **rooms, char *line)
 ** Distributing input to appropriate Parser
 */
 
-int		parser(t_room **rooms, char *line, int *section)
+int		parser(t_room **rooms, char *line, int *section, int *ants)
 {
-	int	ants;
-
-	ants = 0;
 	if (line[0] == '#')
 		parse_comment(line, section);
 	else if (*section == IS_ANT)
 	{
-		ants = ft_atoi(line);
-		*section = !ft_strisdigit(line) || ants == 0 ? IS_ENDED : ROOM_NODE;
+		*ants = ft_atoi(line);
+		*section = !ft_strisdigit(line) || *ants == 0 ? IS_ENDED : ROOM_NODE;
 	}
 	else if (*section == ROOM_NODE || *section == ROOM_START
 	|| *section == ROOM_END)
 	{
-		*section = parse_room(rooms, line, *section, ants);
+		*section = parse_room(rooms, line, *section, *ants);
 	}
 	if (line[0] != '#' && *section == IS_LINK)
 		*section = parse_link(rooms, line);
@@ -122,20 +119,22 @@ int		main(int ac, char **av)
 	int		section;
 	t_room	*rooms;
 	int		c;
+	int		ants;
 
 	rooms = NULL;
 	section = IS_ANT;
+	ants = 0;
 	while ((c = ft_readline(0, &line)) == 1)
 	{
 		ac != 1 && !ft_strcmp(av[1], "-q") ? 0 : ft_printf("%s\n", line);
-		parser(&rooms, line, &section);
+		parser(&rooms, line, &section, &ants);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
 	calculate_cost(rooms);
 	if (rooms->cost == INT_MAX)
 		ft_printf("ERROR\n");
-	ft_print_rooms(&rooms);
+	ft_printf("\n");
 	move_ants(rooms);
 	free_rooms(&rooms);
 	return (0);

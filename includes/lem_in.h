@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/11 12:38:20 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 17:17:24 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 12:41:45 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,7 @@
 # define ROOM_END 12
 # define IS_LINK 2
 # define IS_ENDED -1
-# define MAX_LINK 10
+# define MAX_LINK 35
 
 /*
 ** ROOM STRUCTURE
@@ -60,7 +60,7 @@ int					macro_cmd(char *cmd);
 */
 
 int					ft_strisdigit(char *str);
-size_t				ft_arraylen(char **array);
+size_t				ft_arraylen(void **array);
 t_room				*search_room(t_room **rooms, char *name);
 size_t				ft_roomlen(t_room **array);
 int					error(int is_error);
@@ -68,7 +68,9 @@ int					error(int is_error);
 /*
 ** CALCULATING
 */
-void				calculate_cost(t_room* rooms);
+void				calculate_cost(t_room *rooms);
+int					randint(int n);
+t_room				*search_end(t_room *rooms);
 
 /*
 ** MOVES
@@ -80,5 +82,6 @@ void				move_ants(t_room *rooms);
 */
 
 void				ft_print_rooms(t_room **rooms);
+void				ft_has_cost(t_room **rooms);
 
 #endif

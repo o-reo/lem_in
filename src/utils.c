@@ -6,7 +6,7 @@
 /*   By: eruaud <eruaud@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/13 18:17:18 by eruaud       #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 13:56:13 by eruaud      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 11:56:21 by eruaud      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ int		ft_strisdigit(char *str)
 ** Calculate the length of an array
 */
 
-size_t	ft_arraylen(char **array)
+size_t	ft_arraylen(void **array)
 {
 	size_t	len;
 
@@ -86,11 +86,11 @@ t_room	*search_room(t_room **rooms, char *name)
 
 int		error(int is_error)
 {
-	if (is_error){
+	if (is_error)
+	{
 		ft_printf("ERROR\n");
 		return (-1);
 	}
 	else
 		return (0);
-
 }
